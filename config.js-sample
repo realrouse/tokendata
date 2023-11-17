@@ -1,0 +1,64 @@
+module.exports = {
+  // Infura API Key: Your project key for accessing the Ethereum network through the Infura service.
+  // This key is required to make requests to the Ethereum blockchain.
+  INFURA_API_KEY: 'INFURA-KEY', // Replace with your actual Infura API key.
+
+  // Token Contract Address: The Ethereum address of the ERC20 token contract you want to interact with.
+  // This address is used to fetch token balances and other contract-specific data.
+  TOKEN_CONTRACT_ADDRESS: '0xCF8335727B776d190f9D15a54E6B9B9348439eEE', // Replace with the actual contract address.
+
+  // Target Address: The Ethereum address for which you want to look up the token balance.
+  // This could be any address of interest, such as a burn address, a wallet address, etc.
+  TARGET_ADDRESS: '0x0000000000000000000000000000000000000000', // Replace with the address you're interested in.
+
+  // Contract Creation Block Number: The block number at which the contract was deployed on the Ethereum network.
+  // This is used to calculate the total duration the contract has been active and to avoid querying blocks before the contract existed.
+  CONTRACT_CREATION_BLOCK_NUMBER: BigInt(8943162), // Replace with the block number of your contract's creation.
+
+  
+  // API INFO - Enter the URL of the main API that we will fetch data from 
+  MAIN_API_URL: 'https://whackd-api.herokuapp.com/api',
+  
+  // Enter the name of the value in the API that we will fetch amount of minted tokens from
+  MINTED_SUPPLY_KEY: 'circulatingSupplyFormatted',
+
+  // Enter the desired name of the database table for balance info
+  BALANCESTABLE: 'balances_whackd',
+
+  // Enter the desired name of the database table for burn stats
+  BURNCALCTABLE: 'burncalc_whackd',
+  
+  // Enter the amount of decimals of the token
+  TOKENDECIMALS: 18,
+  
+  // Enter the desired URL of your API.
+  APIURL: '/api/burns-whackd',
+
+  // No need to edit
+  MINTED_SUPPLY: null, // This will be updated by the script
+
+  // Database Configuration: Connection settings for your MySQL database.
+  // These settings are used to store and retrieve balance data from your database.
+  DB_CONFIG: {
+    host: 'localhost', // The host where your database server is running, usually 'localhost'.
+    user: 'DATABASE-USER', // The username for accessing the database.
+    database: 'DATABASE-NAME', // The name of the database you are connecting to.
+    password: 'DATABASE-USER-PASSWORD', // The password for the database user. Replace with your actual password.
+    waitForConnections: true, // Determines if the connection pool should wait for a free connection.
+    connectionLimit: 10, // The maximum number of connections to create at once.
+    queueLimit: 0 // The maximum number of connection requests to queue before returning an error.
+  },
+
+  // Block Range: Defines the acceptable range of block numbers to be considered for querying.
+  // This is used to prevent processing the same block number or very close block numbers multiple times.
+  BLOCK_RANGE: 6000, // This number should be set based on how often you expect new entries.
+
+  // Blocks Per Day: An estimate of the number of Ethereum blocks mined per day.
+  // This is used for estimating dates based on block numbers.
+  BLOCKS_PER_DAY: 6900, // Adjust this number based on the current Ethereum network statistics.
+
+  // ERC20 ABI: The ABI (Application Binary Interface) of the ERC20 token contract.
+  // The ABI is essential for interacting with the Ethereum contract, as it defines the contract's functions.
+  ERC20_ABI: require('./erc20_abi.json') // Path to your ERC20 token's ABI file.
+};
+
